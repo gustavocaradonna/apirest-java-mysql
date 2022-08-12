@@ -24,8 +24,10 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/save")
-	public ResponseEntity<User> save(@RequestBody User user){
-		return new ResponseEntity<>(userService.save(user), HttpStatus.CREATED);
+	public ResponseEntity<Void> save(@RequestBody User user){
+		
+		userService.save(user);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/all")
@@ -39,9 +41,9 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<User> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		userService.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 
