@@ -28,4 +28,8 @@ public class PedidoService {
 		return pedidoRepository.findById(id);
 	}
 	
+	public void delete(Integer id) {
+		pedidoRepository.deleteById(id);
+	}
+	
 }
