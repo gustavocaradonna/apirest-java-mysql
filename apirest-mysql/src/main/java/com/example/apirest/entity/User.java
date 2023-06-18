@@ -8,8 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
-@Table(name="Users")
+@Table(name="usuarios")
+@Getter
+@Setter
+@NoArgsConstructor
+
 public class User {
 
 	@Id
@@ -21,6 +29,8 @@ public class User {
 	private BigDecimal salary;
 	private boolean active;
 	
+	
+	/*	reemplazo constructor por defecto, getters y setters con lombok
 	public User() {
 		
 	}
@@ -74,7 +84,7 @@ public class User {
 	}
 	
 	
-	
+	*/
 	
 	
 }

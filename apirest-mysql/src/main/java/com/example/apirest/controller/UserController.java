@@ -20,7 +20,7 @@ import com.example.apirest.entity.User;
 import com.example.apirest.service.UserService;
 
 @RestController
-@RequestMapping("/apirest")
+@RequestMapping("/apirest/usuario")
 public class UserController {
 	@Autowired
 	private UserService userService;
