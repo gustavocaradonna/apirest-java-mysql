@@ -16,28 +16,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.apirest.entity.User;
-import com.example.apirest.service.UserService;
+import com.example.apirest.entity.Usuario;
+import com.example.apirest.service.UsuarioService;
 
 @RestController
 @RequestMapping("/apirest/usuario")
-public class UserController {
+public class UsuarioController {
 	@Autowired
-	private UserService userService;
+	private UsuarioService userService;
 
 	@PostMapping("/save")
-	public ResponseEntity<Void> save(@RequestBody User user) {
+	public ResponseEntity<Void> save(@RequestBody Usuario user) {
 		userService.save(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<User>> findAll() {
+	public ResponseEntity<List<Usuario>> findAll() {
 		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<User>> findById(@PathVariable Integer id) {
+	public ResponseEntity<Optional<Usuario>> findById(@PathVariable Integer id) {
 		return new ResponseEntity<>(userService.get(id), HttpStatus.OK);
 	}
 
@@ -56,20 +56,20 @@ public class UserController {
 
 	// devuelve impares
 	@GetMapping("/devolverImpares")
-	public ResponseEntity<List<User>> devolverImpares() {
+	public ResponseEntity<List<Usuario>> devolverImpares() {
 		return new ResponseEntity<>(userService.devolverImpares(), HttpStatus.OK);
 	}
 
 	// devuelve pares
 	@GetMapping("/devolverPares")
-	public ResponseEntity<List<User>> devolverPares() {
+	public ResponseEntity<List<Usuario>> devolverPares() {
 		return new ResponseEntity<>(userService.devolverPares(), HttpStatus.OK);
 	}
 
 	// si paso par devuelve lista de pares, si paso impares devuelve lista de
 	// impares
 	@GetMapping("/devolverSegunNumero/{id}")
-	public ResponseEntity<List<User>> devolverSegunNumero(@PathVariable Integer id) {
+	public ResponseEntity<List<Usuario>> devolverSegunNumero(@PathVariable Integer id) {
 
 		return id % 2 == 0 ? new ResponseEntity<>(userService.devolverPares(), HttpStatus.OK)
 				: new ResponseEntity<>(userService.devolverImpares(), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class UserController {
 	
 	//buscar usuarios por nombre
 	@GetMapping("/buscarPorNombre/{nombre}")
-	public ResponseEntity<List<User>> buscarPorNombre(@PathVariable String nombre) {
+	public ResponseEntity<List<Usuario>> buscarPorNombre(@PathVariable String nombre) {
 
 		return  new ResponseEntity<>(userService.buscarPorNombre(nombre), HttpStatus.OK);
 	}
