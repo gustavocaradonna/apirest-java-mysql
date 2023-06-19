@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.apirest.entity.Usuario;
+import com.example.apirest.entity.User;
 import com.example.apirest.repository.UsuarioRepository;
 
 @Service
@@ -15,16 +15,16 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	public List<Usuario> findAll() {
+	public List<User> findAll() {
 
 		return usuarioRepository.findAll();
 	}
 
-	public Usuario save(Usuario user) {
+	public User save(User user) {
 		return usuarioRepository.save(user);
 	}
 
-	public Optional<Usuario> get(Integer id) {
+	public Optional<User> get(Integer id) {
 		return usuarioRepository.findById(id);
 	}
 	
@@ -35,15 +35,15 @@ public class UsuarioService {
 
 	// métodos nuevos
 
-	public List<Usuario> devolverImpares() {
+	public List<User> devolverImpares() {
 		return usuarioRepository.devolverImpares();
 	}
 	
-	public List<Usuario> devolverPares() {
+	public List<User> devolverPares() {
 		return usuarioRepository.devolverPares();
 	}
 	
-	public List<Usuario> buscarPorNombre(String nombre) {
+	public List<User> buscarPorNombre(String nombre) {
 		return usuarioRepository.buscarPorNombre(nombre);
 	}
 

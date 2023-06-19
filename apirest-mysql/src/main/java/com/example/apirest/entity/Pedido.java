@@ -27,11 +27,9 @@ public class Pedido {
 		private double precio;
 
 	    @ManyToOne
-	    @JoinColumn(name = "usuario_id")
-	    private Usuario usuario;
-	
-	
-	
-	
-	
+	    @JoinColumn(name = "user_id")
+	    private User user;
+
+	    
+	    
 }
