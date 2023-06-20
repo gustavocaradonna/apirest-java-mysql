@@ -1,6 +1,5 @@
 package com.example.apirest.entity;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,11 +29,10 @@ public class User {
 	private Integer id;
 	private String name;
 	private String email;
-	private int age;
-	private BigDecimal salary;
-	private boolean active;
+
 
 	//agrego mi lista de pedidos
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos;
 

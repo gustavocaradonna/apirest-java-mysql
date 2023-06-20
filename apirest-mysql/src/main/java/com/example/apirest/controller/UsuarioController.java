@@ -33,7 +33,9 @@ public class UsuarioController {
 
 	@GetMapping("/all")
 	public ResponseEntity<List<User>> findAll() {
-		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+        //return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+	return ResponseEntity.ok(userService.findAll());
 	}
 
 	@GetMapping("/find/{id}")
