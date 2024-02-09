@@ -1,17 +1,19 @@
 package com.example.apirest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.apirest.dto.UserDTO;
+import com.example.apirest.dto.UserListDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,18 +24,60 @@ import com.example.apirest.service.UserService;
 @RestController
 @RequestMapping("/apirest/usuario")
 public class UserController {
-	@Autowired
 	private UserService userService;
 
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
+
+//	@PostMapping("/save")
+//	public ResponseEntity<Void> save(@RequestBody User user) {
+//		userService.save(user);
+//		return new ResponseEntity<>(HttpStatus.CREATED);
+//	}
+
 	@PostMapping("/save")
-	public ResponseEntity<Void> save(@RequestBody User user) {
+	public ResponseEntity<Void> save(@RequestBody UserDTO userDTO) {
+		User user = mapToUser(userDTO); // Método para mapear el DTO a la entidad User
 		userService.save(user);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+	private User mapToUser(UserDTO userDTO) {
+		User user = new User();
+		user.setName(userDTO.getUsername());
+		user.setEmail(userDTO.getEmail());
+		// Otros campos si es necesario
+		return user;
+	}
+//	@GetMapping("/all")
+//	public ResponseEntity<List<User>> findAll() {
+//		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+//	}
 
-	@GetMapping("/all")
-	public ResponseEntity<List<User>> findAll() {
-		return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+	/**
+	 * mismo metodo /all pero con DTO
+	 * @param
+	 * @return
+	 */
+	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<UserListDTO> findAll() {
+		List<User> users = userService.findAll();
+		List<UserDTO> usersDTO = mapTousersDTO(users); // Método para mapear la lista de usuarios a una lista de DTOs
+		UserListDTO userListDTO = new UserListDTO();
+		userListDTO.setUsers(usersDTO);
+		return new ResponseEntity<>(userListDTO, HttpStatus.OK);
+	}
+
+	private List<UserDTO> mapTousersDTO(List<User> users) {
+		List<UserDTO> usersDTO = new ArrayList<>();
+		for (User user : users) {
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUsername(user.getName());
+			userDTO.setEmail(user.getEmail());
+			// Otros campos si es necesario
+			usersDTO.add(userDTO);
+		}
+		return usersDTO;
 	}
 
 	@GetMapping("/find/{id}")

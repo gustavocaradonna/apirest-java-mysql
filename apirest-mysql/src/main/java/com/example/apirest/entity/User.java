@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name="usuarios")
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 
 public class User {
 
@@ -28,12 +28,7 @@ public class User {
 	private int age;
 	private BigDecimal salary;
 	private boolean active;
-	
-	
-	/*	reemplazo constructor por defecto, getters y setters con lombok
-	public User() {
-		
-	}
+
 
 	public Integer getId() {
 		return id;
@@ -84,7 +79,7 @@ public class User {
 	}
 	
 	
-	*/
+
 	
 	
 }
