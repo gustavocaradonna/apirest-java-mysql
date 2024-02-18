@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.apirest.entity.Pedido;
-import com.example.apirest.service.PedidoService;
+import com.example.apirest.service.implementations.PedidoService;
 
 @RestController
 @RequestMapping("/apirest/pedido")

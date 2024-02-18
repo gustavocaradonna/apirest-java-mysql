@@ -6,7 +6,8 @@ import java.util.Optional;
 
 import com.example.apirest.dto.UserDTO;
 import com.example.apirest.dto.UserListDTO;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.apirest.service.interfaces.UserService;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.apirest.entity.User;
-import com.example.apirest.service.UserService;
 
 @RestController
 @RequestMapping("/apirest/usuario")
 public class UserController {
-	private UserService userService;
+	private final UserService userService;
 
 	public UserController(UserService userService) {
 		this.userService = userService;
@@ -60,14 +60,18 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<UserListDTO> findAll() {
-		List<User> users = userService.findAll();
-		List<UserDTO> usersDTO = mapTousersDTO(users); // Método para mapear la lista de usuarios a una lista de DTOs
-		UserListDTO userListDTO = new UserListDTO();
-		userListDTO.setUsers(usersDTO);
-		return new ResponseEntity<>(userListDTO, HttpStatus.OK);
+	public ResponseEntity<UserListDTO> findAll () {
+		try {
+			List<User> users = userService.findAll();
+			List<UserDTO> usersDTO = mapTousersDTO(users); // Método para mapear la lista de usuarios a una lista de DTOs
+			UserListDTO userListDTO = new UserListDTO();
+			userListDTO.setUsers(usersDTO);
+			return new ResponseEntity<>(userListDTO, HttpStatus.OK);
+		} catch (DataAccessException e) {
+			// Manejar la excepción
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
-
 	private List<UserDTO> mapTousersDTO(List<User> users) {
 		List<UserDTO> usersDTO = new ArrayList<>();
 		for (User user : users) {
