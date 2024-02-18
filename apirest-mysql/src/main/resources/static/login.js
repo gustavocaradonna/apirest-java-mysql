@@ -10,18 +10,19 @@ $(document).ready(function () {
         const username = $('#username').val();
         const password = $('#password').val();
 
-        // Realizar la solicitud POST al servidor
+        // Realizar la solicitud POST al servidor con los parámetros de usuario y contraseña
         $.ajax({
             url: '/login',
             method: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({
+            data: {
                 username: username,
                 password: password
-            }),
+            },
             success: function () {
-                // Redireccionar o realizar alguna acción en caso de éxito
+                // Redireccionar al usuario a la página loggedin.html después del inicio de sesión exitoso
                 console.log('Login successful!');
+                window.location.href = '/loggedin';
             },
             error: function () {
                 // Manejar el caso de error de autenticación
