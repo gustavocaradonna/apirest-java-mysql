@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/apirest/login")
 public class LoginController {
 
@@ -18,7 +18,7 @@ public class LoginController {
 
         // Aquí puedes realizar la lógica de autenticación
         // Por ejemplo, verificar si el usuario y la contraseña son válidos
-        if ("usuario".equals(username) && "contraseña".equals(password)) {
+        if ("user".equals(username) && "pass".equals(password)) {
             // Si las credenciales son válidas, puedes redirigir al usuario a la página de éxito
             System.out.println("Datos correctos");
             return "success";
@@ -27,6 +27,11 @@ public class LoginController {
             System.out.println("Datos erroneos");
             return "error";
         }
+    }
+
+    @GetMapping("/loggedin")
+    public String redirectToLoggedInPage() {
+        return "redirect:/loggedin.html";
     }
 
 }

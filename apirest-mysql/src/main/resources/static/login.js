@@ -13,7 +13,6 @@ $(document).ready(function () {
         // Obtener los valores de usuario y contraseña del formulario
         const username = $('#username').val();
         const password = $('#password').val();
-        debugger;
         // Realizar la solicitud POST al servidor con los parámetros de usuario y contraseña
         $.ajax({
             url: '/apirest/login/test',
@@ -24,7 +23,7 @@ $(document).ready(function () {
                 // Manejar la respuesta del servidor
                 console.log('Login successful!');
                 if (response === 'success') {
-                    window.location.href = '/loggedin';
+                    window.location.href = '/loggedin.html';
                 } else {
                     console.error('Authentication failed!');
                     // Aquí podrías mostrar un mensaje de error al usuario
