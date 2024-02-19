@@ -44,8 +44,14 @@ public class UserController {
 	}
 	private User mapToUser(UserDTO userDTO) {
 		User user = new User();
-		user.setName(userDTO.getUsername());
+		user.setName(userDTO.getName());
 		user.setEmail(userDTO.getEmail());
+		user.setAge(userDTO.getAge());
+		user.setSalary(userDTO.getSalary());
+		user.setActive(userDTO.getActive());
+		user.setUserName(userDTO.getUserName());
+		user.setPass(userDTO.getPass());
+
 		// Otros campos si es necesario
 		return user;
 	}
@@ -76,8 +82,14 @@ public class UserController {
 		List<UserDTO> usersDTO = new ArrayList<>();
 		for (User user : users) {
 			UserDTO userDTO = new UserDTO();
-			userDTO.setUsername(user.getName());
+			userDTO.setId(user.getId());
+			userDTO.setName(user.getName());
 			userDTO.setEmail(user.getEmail());
+			userDTO.setAge(user.getAge());
+			userDTO.setSalary(user.getSalary());
+			userDTO.setActive(user.getActive());
+			userDTO.setUserName(user.getUserName());
+			userDTO.setPass(user.getPass());
 			// Otros campos si es necesario
 			usersDTO.add(userDTO);
 		}

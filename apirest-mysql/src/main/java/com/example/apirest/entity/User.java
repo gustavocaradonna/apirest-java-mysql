@@ -24,6 +24,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	private String userName;
+	private String pass;
 	private String email;
 	private int age;
 	private BigDecimal salary;
@@ -70,16 +72,28 @@ public class User {
 		this.salary = salary;
 	}
 
-	public boolean isActive() {
+	public boolean getActive() {
 		return active;
 	}
 
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
 
-	
-	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
 }
