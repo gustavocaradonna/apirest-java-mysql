@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.buscarPorNombre(nombre);
     }
 
+
+    public User buscarPorUserName(String nombre) {
+        return userRepository.buscarPorUserName(nombre);
+    }
+
+
 //	public List<User> devolverSegunNumero(Integer id) {
 //		return userRepository.devolverPares();
 //

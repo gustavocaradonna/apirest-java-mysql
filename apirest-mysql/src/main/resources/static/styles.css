@@ -50,3 +50,23 @@ button {
 button:hover {
     background-color: #357ae8;
 }
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px; /* Ancho máximo del contenedor */
+    width: 100%; /* Ancho del contenedor al 100% del ancho disponible */
+    height: 100vh; /* Altura fija igual al 100% de la altura de la ventana */
+    margin: 0 auto; /* Centra horizontalmente el contenedor */
+    background-color: white; /* Color de fondo del contenedor */
+    padding: 20px; /* Agrega espaciado alrededor del contenido */
+    border: 1px solid #ccc; /* Agrega un borde al contenedor para mayor claridad */
+}
+
+.container img {
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Hace que la altura de la imagen se ajuste automáticamente */
+}

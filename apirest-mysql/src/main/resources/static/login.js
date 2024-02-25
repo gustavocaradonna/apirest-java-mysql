@@ -21,11 +21,12 @@ $(document).ready(function () {
             data: JSON.stringify({username: username, password: password}),
             success: function (response) {
                 // Manejar la respuesta del servidor
-                console.log('Login successful!');
                 if (response === 'success') {
+                    console.log('Login successful!');
                     window.location.href = '/loggedin.html';
                 } else {
                     console.error('Authentication failed!');
+                    alert("Ingreso incorrecto, vuelva a intentar");
                     // Aquí podrías mostrar un mensaje de error al usuario
                 }
             },

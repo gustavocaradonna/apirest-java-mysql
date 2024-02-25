@@ -14,4 +14,6 @@ public interface UserService {
     List<User> devolverImpares();
     List<User> devolverPares();
     List<User> buscarPorNombre(String nombre);
+    User buscarPorUserName(String nombre);
+
 }

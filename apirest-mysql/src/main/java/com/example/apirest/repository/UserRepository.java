@@ -22,7 +22,10 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	@Query("SELECT u FROM User u WHERE u.name = :nombre")
 	List<User> buscarPorNombre(@Param("nombre")String nombre);
-	
-	
-	
+
+	@Query("SELECT u FROM User u WHERE u.userName = :userName")
+	User buscarPorUserName(@Param("userName") String userName);
+
+
+
 }
